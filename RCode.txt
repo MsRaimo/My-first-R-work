@@ -1,0 +1,115 @@
+
+//////////////////////////////////////////////////////////////////////////////
+///									   ///
+///     Spring & Winter Medians - READING Grades 7-8 for Templates         ///
+///                  School, Grade, Dept, Course                           ///
+///									   ///
+//////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+dat<-read.table("Z:/admdata/DATA/AssessmentData/2013-2014 CSIp/CSIP Templates/Winter Background Data/middleread.txt", header=TRUE, sep="\t")
+attach(dat)
+
+id<-factor(id)
+Grade<-factor(Grade)
+School<-factor(School)
+Course<-factor(Course)
+Dept<-factor(Dept)
+library("plyr", lib.loc="C:/Program Files/R/R-3.0.2/library")
+t<-ddply(dat, .(School, Grade, Dept, Course), summarise, Num=sum(n), SMedian=median(SpRead), WMedian=median(Wread))
+
+write.csv(t, file="Z:/admdata/DATA/AssessmentData/2013-2014 CSIp/CSIP Templates/Winter Background Data/WinterMiddleTemplateReadingSWAStoo.csv")
+detach(dat)
+
+
+//////////////////////////////////////////////////////////////////////////////
+///									   ///
+///     Spring & Winter Medians - MATH Grades 7-8 for Templates            ///
+///                  School, Grade, Dept, Course                           ///
+///									   ///
+//////////////////////////////////////////////////////////////////////////////
+
+
+
+
+dat<-read.table("Z:/admdata/DATA/AssessmentData/2013-2014 CSIp/CSIP Templates/Winter Background Data/middlemath.txt", header=TRUE, sep="\t")
+attach(dat)
+
+id<-factor(id)
+Grade<-factor(Grade)
+School<-factor(School)
+Course<-factor(Course)
+Dept<-factor(Dept)
+library("plyr", lib.loc="C:/Program Files/R/R-3.0.2/library")
+t<-ddply(dat, .(School, Grade, Dept, Course), summarise, Num=sum(n), SMedian=median(Spmath), WMedian=median(Wmath))
+
+write.csv(t, file="Z:/admdata/DATA/AssessmentData/2013-2014 CSIp/CSIP Templates/Winter Background Data/WinterMiddleTemplateMath.csv")
+detach(dat)
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+///									   ///
+///		               TOP OF TEMPLATES		        	   ///
+///     Spring & Winter Medians - READING Grades 7-8 for Templates         ///
+///                  Grade, Dept, Course                                   ///
+///									   ///
+//////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+dat<-read.table("Z:/admdata/DATA/AssessmentData/2013-2014 CSIp/CSIP Templates/Winter Background Data/middleread.txt", header=TRUE, sep="\t")
+attach(dat)
+
+id<-factor(id)
+Grade<-factor(Grade)
+School<-factor(School)
+Course<-factor(Course)
+Dept<-factor(Dept)
+library("plyr", lib.loc="C:/Program Files/R/R-3.0.2/library")
+t<-ddply(dat, .(Grade, Dept, Course), summarise, Num=sum(n), SMedian=median(SpRead), WMedian=median(Wread))
+
+write.csv(t, file="Z:/admdata/DATA/AssessmentData/2013-2014 CSIp/CSIP Templates/Winter Background Data/WinterMiddleTemplateTOPReading.csv")
+detach(dat)
+
+
+//////////////////////////////////////////////////////////////////////////////
+///									   ///
+///		               TOP OF TEMPLATES		        	   ///
+///     Spring & Winter Medians - MATH Grades 7-8 for Templates            ///
+///                        Grade, Dept, Course                             ///
+///									   ///
+//////////////////////////////////////////////////////////////////////////////
+
+
+
+
+dat<-read.table("Z:/admdata/DATA/AssessmentData/2013-2014 CSIp/CSIP Templates/Winter Background Data/middlemath.txt", header=TRUE, sep="\t")
+attach(dat)
+
+id<-factor(id)
+Grade<-factor(Grade)
+School<-factor(School)
+Course<-factor(Course)
+Dept<-factor(Dept)
+library("plyr", lib.loc="C:/Program Files/R/R-3.0.2/library")
+t<-ddply(dat, .(Grade, Dept, Course), summarise, Num=sum(n), SMedian=median(Spmath), WMedian=median(Wmath))
+write.csv(t, file="Z:/admdata/DATA/AssessmentData/2013-2014 CSIp/CSIP Templates/Winter Background Data/WinterMiddleTemplateTOPMath.csv")
+detach(dat)
+
+
+
+
+
+
+
+
+
+write.csv(t, file="Z:/admdata/DATA/AssessmentData/2013-2014 CSIp/CSIP Templates/Winter Background Data/WinterMiddleTemplateMath.csv")

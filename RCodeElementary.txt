@@ -1,0 +1,169 @@
+
+#//////////////////////////////////////////////////////////////////////////////
+#///									   ///
+#///     Spring & Winter Medians - READING Grades 3-6 for Templates         ///
+#///                  School, Grade, Program 		                   ///
+#///									   ///
+#//////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+dat<-read.table("Z:/admdata/DATA/AssessmentData/2013-2014 CSIp/CSIP Templates/Winter Background Data/elementarymapread.txt", header=TRUE, sep="\t")
+attach(dat)
+
+ID<-factor(ID)
+Grade<-factor(Grade)
+School<-factor(School)
+Program<-factor(Program)
+library(plyr)
+t<-ddply(dat, .(School, Grade, Program), summarise, Num=sum(n), SMedian=median(SpRead), WMedian=median(Wread))
+
+write.csv(t, file="Z:/admdata/DATA/AssessmentData/2013-2014 CSIp/CSIP Templates/Winter Background Data/WinterElemREAD_SETSWASincluded.csv")
+
+
+
+#//////////////////////////////////////////////////////////////////////////////
+#///									   ///
+#///     Spring & Winter Medians - MATH Grades 3-6 for Templates            ///
+#///                  School, Grade, Program	                           ///
+#///									   ///
+#//////////////////////////////////////////////////////////////////////////////
+
+
+
+
+dat<-read.table("Z:/admdata/DATA/AssessmentData/2013-2014 CSIp/CSIP Templates/Winter Background Data/elementarymapmath.txt", header=TRUE, sep="\t")
+attach(dat)
+
+ID<-factor(ID)
+Grade<-factor(Grade)
+School<-factor(School)
+Program<-factor(Program)
+library(plyr)
+t<-ddply(dat, .(School, Grade, Program), summarise, Num=sum(n), SMedian=median(Spmath), WMedian=median(Wmath))
+
+write.csv(t, file="Z:/admdata/DATA/AssessmentData/2013-2014 CSIp/CSIP Templates/Winter Background Data/WinterElemeMATH_SETSWASincluded.csv")
+
+
+
+#//////////////////////////////////////////////////////////////////////////////
+#///									    ///
+#///     Spring & Winter Medians - READING Grades 2-6 for Templates         ///
+#///                  School, Grade, Course, lang        	            ///
+#///									    ///
+#//////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+dat<-read.table("Z:/admdata/DATA/AssessmentData/2013-2014 CSIp/CSIP Templates/Winter Background Data/elementarynoncohort.txt", header=TRUE, sep="\t")
+attach(dat)
+
+ID<-factor(ID)
+Grade<-factor(Grade)
+School<-factor(School)
+Program<-as.factor(Program)
+
+#IGNORE NA Values
+nums.Math <- as.numeric(as.character(dat$Math))
+m.M <- median(nums.Math, na.rm = T)
+nums.Math[is.na(nums.Math)] <- m.M
+dat$Math.n <- nums.Math
+
+nums.Read <- as.numeric(as.character(dat$Read))
+m.R <- median(nums.Read, na.rm = T)
+nums.Read[is.na(nums.Read)] <- m.R
+dat$Read.n <- nums.Read
+
+#End
+
+library(plyr)
+t<-ddply(dat, .(Grade, Program), summarise, Num=sum(Count), Math_Median=median(Math.n), Reading_Median=median(Read.n))
+
+write.csv(t, file="Z:/admdata/DATA/AssessmentData/2013-2014 CSIp/CSIP Templates/Winter Background Data/WinterGlobalMedians.csv")
+
+
+
+#//////////////////////////////////////////////////////////////////////////////
+#///									    ///
+#///     Spring & Winter Medians - MATH Grades 2-6 for Templates            ///
+#///                  School, Grade, Course, lang                           ///
+#///									    ///
+#//////////////////////////////////////////////////////////////////////////////
+
+
+
+
+dat<-read.table("Z:/admdata/DATA/AssessmentData/2013-2014 CSIp/CSIP Templates/Winter Background Data/elementarymapmath.txt", header=TRUE, sep="\t")
+attach(dat)
+
+ID<-factor(ID)
+Grade<-factor(Grade)
+School<-factor(School)
+Course<-factor(Course)
+lang<-factor(lang)
+library(plyr)
+t<-ddply(dat, .(School, Grade, Course, lang), summarise, Num=sum(n), SMedian=median(Spmath), WMedian=median(Wmath))
+
+write.csv(t, file="Z:/admdata/DATA/AssessmentData/2013-2014 CSIp/CSIP Templates/Winter Background Data/WinterElementaryTemplateMathDUAL.csv")
+
+
+
+#//////////////////////////////////////////////////////////////////////////////
+#///									    ///
+#///     Spring & Winter Medians - READING Grade  2   for Templates         ///
+#///                  School, Grade, Program                                ///
+#///									    ///
+#//////////////////////////////////////////////////////////////////////////////
+
+
+
+
+dat<-read.table("Z:/admdata/DATA/AssessmentData/2013-2014 CSIp/CSIP Templates/Winter Background Data/Grade2Read.txt", header=TRUE, sep="\t")
+attach(dat)
+
+ID<-factor(ID)
+Grade<-factor(Grade)
+School<-factor(School)
+Course<-factor(Program)
+lang<-factor(lang)
+Text.Level<-as.factor(Textlevel)
+library(plyr)
+
+t2<-ddply(dat, .(School, Grade, Program), summarise, Num=sum(Count),AtRisk=sum(Count[Textlevel=="At Risk"]),GtoI=sum(Count[Textlevel=="G to I"]), JandAbove=sum(Count[Textlevel=="J and Above"]), MedianTL=median(TLScale),WMedian=median(Wread)  )
+write.csv(t2, file="Z:/admdata/DATA/AssessmentData/2013-2014 CSIp/CSIP Templates/Winter Background Data/WintElemGr2READING_TextLevel2.csv")
+
+
+
+
+#//////////////////////////////////////////////////////////////////////////////
+#///									   ///
+#///     Spring & Winter Medians - MATH Grades 2  for Templates            ///
+#///                  School, Grade, Program	                           ///
+#///									   ///
+#//////////////////////////////////////////////////////////////////////////////
+
+
+
+
+dat<-read.table("Z:/admdata/DATA/AssessmentData/2013-2014 CSIp/CSIP Templates/Winter Background Data/Grade2Math.txt", header=TRUE, sep="\t")
+attach(dat)
+
+ID<-factor(ID)
+Grade<-factor(Grade)
+School<-factor(School)
+Program<-factor(Program)
+library(plyr)
+t<-ddply(dat, .(School, Grade, Program), summarise, Num=sum(n), WMedian=median(Wmath))
+
+write.csv(t, file="Z:/admdata/DATA/AssessmentData/2013-2014 CSIp/CSIP Templates/Winter Background Data/WinterGrade2_Math.csv")
+
+
+
+
+
